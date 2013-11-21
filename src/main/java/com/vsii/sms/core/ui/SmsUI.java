@@ -9,18 +9,19 @@ import com.vaadin.data.fieldgroup.FieldGroup;
 import com.vaadin.data.util.IndexedContainer;
 import com.vaadin.event.FieldEvents.TextChangeEvent;
 import com.vaadin.event.FieldEvents.TextChangeListener;
-import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.AbstractTextField.TextChangeEventMode;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.HorizontalSplitPanel;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
+import com.vsii.sms.core.resource.Messages;
 
 /*
  * UI class is the starting point for your app. You may deploy it with VaadinServlet
@@ -30,7 +31,7 @@ import com.vaadin.ui.VerticalLayout;
  */
 @SuppressWarnings("serial")
 @Title("Addressbook")
-public class SmsUI extends UI {
+public class SmsUI extends BaseUI {
 
 	/* User interface components are stored in session. */
 	private Table contactList = new Table();
@@ -46,7 +47,6 @@ public class SmsUI extends UI {
 	private static final String[] fieldNames = new String[] { FNAME, LNAME,
 			COMPANY, "Mobile Phone", "Work Phone", "Home Phone", "Work Email",
 			"Home Email", "Street", "City", "Zip", "State", "Country" };
-
 	/*
 	 * Any component can be bound to an external data source. This example uses
 	 * just a dummy in-memory list, but there are many more practical
@@ -54,28 +54,36 @@ public class SmsUI extends UI {
 	 */
 	IndexedContainer contactContainer = createDummyDatasource();
 
-	/*
-	 * After UI class is created, init() is executed. You should build and wire
-	 * up your user interface here.
-	 */
-	protected void init(VaadinRequest request) {
-		initLayout();
+	@Override
+	protected Component initHeader()
+	{
+		return new Label(Messages.get("SmsUI.Header"));
+	}
+
+	@Override
+	protected Component initContent()
+	{
+		Component component = initLayout();
 		initContactList();
 		initEditor();
 		initSearch();
 		initAddRemoveButtons();
+		return component;
 	}
 
+	@Override
+	protected Component initFooter()
+	{
+		return new Label(Messages.get("SmsUI.Header"));
+	}
+	
 	/*
 	 * In this example layouts are programmed in Java. You may choose use a
 	 * visual editor, CSS or HTML templates for layout instead.
 	 */
-	private void initLayout() {
+	private Component initLayout() {
 
-		/* Root of the user interface component tree is set */
 		HorizontalSplitPanel splitPanel = new HorizontalSplitPanel();
-		setContent(splitPanel);
-
 		/* Build the component tree */
 		VerticalLayout leftLayout = new VerticalLayout();
 		splitPanel.addComponent(leftLayout);
@@ -108,6 +116,7 @@ public class SmsUI extends UI {
 		/* Put a little margin around the fields in the right side editor */
 		editorLayout.setMargin(true);
 		editorLayout.setVisible(false);
+		return splitPanel;
 	}
 
 	private void initEditor() {
@@ -283,5 +292,5 @@ public class SmsUI extends UI {
 
 		return ic;
 	}
-
+	
 }

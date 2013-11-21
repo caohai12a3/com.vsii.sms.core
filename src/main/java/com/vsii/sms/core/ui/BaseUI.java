@@ -15,9 +15,7 @@ public abstract class BaseUI extends UI
 		VerticalLayout mainLayout = new VerticalLayout();
 		setContent(mainLayout);
 		
-		Component header = initHeader();
-		header.setHeight("200px");
-		mainLayout.addComponent(header);
+		mainLayout.addComponent(initHeader());
 		mainLayout.addComponent(initContent());
 		mainLayout.addComponent(initFooter());
 	}
@@ -25,5 +23,5 @@ public abstract class BaseUI extends UI
 	protected abstract Component initHeader();
 	protected abstract Component initContent();
 	protected abstract Component initFooter();
-	
+
 }

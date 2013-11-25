@@ -1,5 +1,5 @@
 package com.vsii.sms.core.report;
 
-public class ServeyReportPane {
+public class SurveyReportPane {
 
 }

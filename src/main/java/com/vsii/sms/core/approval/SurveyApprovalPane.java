@@ -1,6 +1,6 @@
 package com.vsii.sms.core.approval;
 
-public class ServeyApprovalPane
+public class SurveyApprovalPane
 {
 
 }

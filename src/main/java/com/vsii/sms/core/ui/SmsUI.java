@@ -8,7 +8,7 @@ import com.vaadin.ui.MenuBar.MenuItem;
 import com.vaadin.ui.VerticalLayout;
 import com.vsii.sms.core.resource.Messages;
 
-@Title("Servey System")
+@Title("Survey System")
 public class SmsUI extends BaseUI {
 	private static final long serialVersionUID = 9148621939177316667L;
 	private MenuBar menubar = null;

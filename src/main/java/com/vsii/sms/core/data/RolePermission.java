@@ -27,30 +27,51 @@
 
 package com.vsii.sms.core.data;
 
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 //
 // IMPORTS
 // NOTE: Import specific classes without using wildcards.
 //
 
-public class RolePermission
+@Entity
+@Table(name = "sms_role_permission")
+public class RolePermission extends BaseEntity
 {
-    private String permissionId;
-    private String roleId;
-    
-    public String getPermissionId()
+    private static final long serialVersionUID = -8681510592514263120L;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Role role;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Permission permission;
+
+    /**
+     * <p>
+     * Setting value for role.
+     * </p>
+     * 
+     * @param role
+     *            the role to set
+     */
+    public void setRole(Role role)
     {
-        return permissionId;
+        this.role = role;
     }
-    public void setPermissionId(String permissionId)
+
+    /**
+     * <p>
+     * Setting value for permission.
+     * </p>
+     * 
+     * @param permission
+     *            the permission to set
+     */
+    public void setPermission(Permission permission)
     {
-        this.permissionId = permissionId;
-    }
-    public String getRoleId()
-    {
-        return roleId;
-    }
-    public void setRoleId(String roleId)
-    {
-        this.roleId = roleId;
+        this.permission = permission;
     }
 }

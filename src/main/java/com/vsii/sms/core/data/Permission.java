@@ -27,22 +27,47 @@
 
 package com.vsii.sms.core.data;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 //
 // IMPORTS
 // NOTE: Import specific classes without using wildcards.
 //
 
-public class Permission
+@Entity
+@Table(name = "sms_permission")
+public class Permission extends BaseEntity
 {
+    private static final long serialVersionUID = 6240250399865731310L;
+    
+    @Column(name = "name", nullable = false, length = 100)
     private String name;
 
+    /**
+     * <p>
+     * Getter for name.
+     * </p>
+     * 
+     * @return the name
+     */
     public String getName()
     {
         return name;
     }
 
+    /**
+     * <p>
+     * Setting value for name.
+     * </p>
+     * 
+     * @param name
+     *            the name to set
+     */
     public void setName(String name)
     {
         this.name = name;
     }
+
 }
